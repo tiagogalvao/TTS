@@ -54,7 +54,8 @@ lint:	## run pylint linter.
 	isort ${target_dirs} --check-only
 
 system-deps:	## install linux system deps
-	sudo apt-get install -y libsndfile1-dev
+	##sudo apt-get install -y libsndfile1-dev
+	paru libsndfile
 
 dev-deps:  ## install development deps
 	pip install -r requirements.dev.txt
@@ -72,7 +73,7 @@ deps:	## install 🐸 requirements.
 	pip install -r requirements.txt
 
 install:	## install 🐸 TTS for development.
-	pip install -e .[all]
+	TMPDIR=/home/brainnz/tmp/ PYO3_USE_ABI3_FORWARD_COMPATIBILITY=1 pip install -e .[all]
 
 docs:	## build the docs
 	$(MAKE) -C docs clean && $(MAKE) -C docs html
